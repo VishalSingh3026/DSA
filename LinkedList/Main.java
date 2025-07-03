@@ -1,3 +1,4 @@
+package Vishal;
 
 public class Main {
 
@@ -8,7 +9,14 @@ public class Main {
         list.inserFirst(1);
         list.inserFirst(16);
         list.insert(5,2);
-
+        list.display();
+        System.out.println(list.deleteFirst());
+        list.display();
+        System.out.println(list.deleteLast());
+        list.inserFirst(19);
+        list.inserFirst(20);
+        list.display();
+        System.out.println(list.delete(1));
         list.display();
 
     }
