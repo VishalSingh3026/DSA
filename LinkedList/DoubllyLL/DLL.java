@@ -1,3 +1,7 @@
+package Vishal;
+
+import java.util.NoSuchElementException;
+
 public class DLL {
 
     private Node head;
@@ -53,6 +57,89 @@ public class DLL {
 
 
     }
+
+    public int deleteFirst(){
+        if (head == null) {
+            throw new NoSuchElementException("List is empty");
+        }
+        int temp=head.val;
+        head=head.next;
+        head.prev=null;
+        if(head==null){
+            tail=null;
+        }
+        size--;
+        return temp;
+    }
+
+    public int deleteLast(){
+        if(size<=1){
+            deleteFirst();
+        }
+        DLL.Node secondLast=get(size-2);
+        int val=secondLast.next.val;
+        tail=secondLast;
+        tail.next=null;
+        size--;
+        return val;
+    }
+
+    public int delete(int index){
+        if(index==0){
+
+            return deleteFirst();
+        }
+        if(index==size){
+            return deleteLast();
+
+        }
+        Node temp=get(index-1);
+        int val=temp.next.val;
+        temp.next=temp.next.next;
+        temp.next.prev=temp;
+        return val;
+    }
+
+    public void insert(int val,int index){
+        if(index==0){
+            insertFirst(val);
+            return ;
+        }
+        if(index==size){
+            insertLast(val);
+            return ;
+        }
+        Node temp=get(index-1);
+        Node node=new Node(val);
+        node.next=temp.next;
+        temp.next.prev=node;
+        temp.next=node;
+        node.prev=temp;
+        size++;
+
+    }
+    public Node get(int index){
+        DLL.Node node =head;
+        for(int i=0;i<index;i++){
+            node =node.next;
+        }
+        return node;
+    }
+
+    public void reverse(){
+        Node node = get(size-1);
+        if(size==0){
+            return;
+        }
+
+        while(node!=null){
+            System.out.print(node.val+" -> ");
+            node=node.prev;
+        }
+        System.out.print("End");
+
+    }
+
 
     private Node tail;
 
